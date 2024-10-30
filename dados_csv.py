@@ -57,10 +57,16 @@ def atualizarDados(telefone, novos_dados):
                     # pegando o indice da linha para usar de referencia na sobrescrita dos dados:
                     index_linha = nova_lista.index(linha)
                     nova_lista[index_linha] = dados_atualizados
-
-
-
-
-
-    #após processar os dados do arquivo, salva o novo array com os registros atualizados:
     salvarArrayDados(nova_lista)
+
+
+# funcao para ler pesquisar do arquivo CSV:
+def pesquisarDados(texto):
+    dados = []
+    with open('dados.csv') as arquivo:
+        arquivo_csv = csv.reader(arquivo)
+        for linha in arquivo_csv:
+            for campo in linha:
+                if campo == texto: # se o texto pesquisado for corresponder a algum registro:
+                    dados.append(linha)
+    return dados
